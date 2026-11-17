@@ -42,26 +42,37 @@ public class Main {
             tipp(nehez, nehez_tips);
         }
         else {
-            System.out.println("Valami nem jó");
+            System.out.println("Használd a fejed bro");
             System.exit(1);
         }
     }
 
     public static void selectHardness(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Válassz nehézséget: 1-Könnyű, 2-Közepes, 3-Nehéz\n> ");
-        selectedHarness = scanner.nextInt();
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Válassz nehézséget: 1-Könnyű, 2-Közepes, 3-Nehéz\n> ");
+            selectedHarness = scanner.nextInt();
+        }
+        catch (Exception e){
+            selectedHarness = -1;
+        }
     }
 
     public static void tipp(int maxSize, int maxTips){
         Scanner scanner = new Scanner(System.in);
         for (int i = 1; i <= maxTips; i++) {
-            System.out.print(i+"/"+maxTips+". tipp - Add meg az x koordinátát ("+1+"-"+maxSize+")\n> ");
-            int cord_x = scanner.nextInt();
-            System.out.print("Add meg az y koordinátát ("+1+"-"+maxSize+")\n> ");
-            int cord_y = scanner.nextInt();
+            try {
+                System.out.print(i+"/"+maxTips+". tipp - Add meg az x koordinátát ("+1+"-"+maxSize+")\n> ");
+                int cord_x = scanner.nextInt();
+                System.out.print("Add meg az y koordinátát ("+1+"-"+maxSize+")\n> ");
+                int cord_y = scanner.nextInt();
 
-            calcTavolsag(cord_x, cord_y, i, maxSize);
+                calcTavolsag(cord_x, cord_y, i, maxSize);
+            }
+            catch (Exception e){
+                System.out.println("Kérem szépen számot adj meg! ");
+            }
+
 
         }
         System.out.println("Vesztettél!!!");
