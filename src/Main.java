@@ -45,7 +45,6 @@ public class Main {
             System.out.println("Valami nem jó");
             System.exit(1);
         }
-
     }
 
     public static void selectHardness(){
