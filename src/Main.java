@@ -21,6 +21,8 @@ public class Main {
 
     static int selectedHarness = 1;
 
+    static boolean badTipp = false;
+
     public static void main(String[] args) {
 
         selectHardness();
@@ -59,9 +61,10 @@ public class Main {
     }
 
     public static void tipp(int maxSize, int maxTips){
-        Scanner scanner = new Scanner(System.in);
         for (int i = 1; i <= maxTips; i++) {
             try {
+                Scanner scanner = new Scanner(System.in);
+
                 System.out.print(i+"/"+maxTips+". tipp - Add meg az x koordinátát ("+1+"-"+maxSize+")\n> ");
                 int cord_x = scanner.nextInt();
                 System.out.print("Add meg az y koordinátát ("+1+"-"+maxSize+")\n> ");
@@ -71,6 +74,7 @@ public class Main {
             }
             catch (Exception e){
                 System.out.println("Kérem szépen számot adj meg! ");
+                badTipp = true;
             }
 
 
@@ -83,8 +87,9 @@ public class Main {
     }
 
     public static void calcTavolsag(int tipp_x, int tipp_y, int tips, int maxTips){
-        if (tipp_x > maxTips || tipp_x < 1 || tipp_y > maxTips || tipp_y < 1){
+        if (badTipp && (tipp_x > maxTips || tipp_x < 1 || tipp_y > maxTips || tipp_y < 1)){
             System.out.println("Tanulj meg tippelni!!! ezért levonok egy tippet");
+            badTipp = false;
             return;
         }
 
@@ -117,7 +122,7 @@ public class Main {
             x_cord.add(i);
             y_cord.add(i);
         }
-        secretCord_x = random.nextInt(hardness);
-        secretCord_y = random.nextInt(hardness);
+        secretCord_x = random.nextInt(hardness) + 1;
+        secretCord_y = random.nextInt(hardness) + 1;
     }
 }
